@@ -457,22 +457,46 @@
    -->
 
    <field name="id" type="string" indexed="true" stored="true" required="true" /> 
-   <field name="sku" type="textTight" indexed="true" stored="true" omitNorms="true"/>
-   <field name="name" type="textgen" indexed="true" stored="true"/>
-   <field name="alphaNameSort" type="alphaOnlySort" indexed="true" stored="false"/>
-   <field name="manu" type="textgen" indexed="true" stored="true" omitNorms="true"/>
-   <field name="cat" type="text_ws" indexed="true" stored="true" multiValued="true" omitNorms="true" />
-   <field name="features" type="text" indexed="true" stored="true" multiValued="true"/>
-   <field name="includes" type="text" indexed="true" stored="true" termVectors="true" termPositions="true" termOffsets="true" />
+   <field name="db_id" type="int" indexed="true" stored="true" /> 
+   <field name="klass" type="string" indexed="true" stored="true" /> 
 
-   <field name="weight" type="float" indexed="true" stored="true"/>
-   <field name="price"  type="float" indexed="true" stored="true"/>
-   <field name="popularity" type="int" indexed="true" stored="true" />
-   <field name="inStock" type="boolean" indexed="true" stored="true" />
+   <field name="user_id" type="int" indexed="true" stored="true" /> 
 
-   <field name="store" type="location" indexed="true" stored="true"/>
-   <field name="store_hash" type="geohash" indexed="true" stored="false"/>
-   <field name="store_tiles" type="tile" indexed="true" stored="false"/>
+
+   <field name="name" type="text" indexed="true" stored="true" /> 
+   <field name="name_sort" type="alphaOnlySort" indexed="true" stored="false" /> 
+
+   <field name="address" type="string" indexed="true" stored="true" /> 
+   <field name="city" type="text" indexed="true" stored="true" /> 
+   <field name="state" type="string" indexed="true" stored="true" /> 
+   <field name="full_state" type="string" indexed="true" stored="true" /> 
+   <field name="zip" type="string" indexed="true" stored="true" /> 
+   <field name="contact_name" type="text" indexed="true" stored="true" /> 
+   <field name="contact_last_name_sort" type="alphaOnlySort" indexed="true" stored="false" /> 
+   <field name="phone" type="string" indexed="true" stored="true" /> 
+   <field name="content" type="text" indexed="true" stored="false" /> 
+   <field name="description" type="text" indexed="true" stored="true"/>
+
+   <field name="category_ids" type="int" indexed="true" stored="true" multiValued="true" />
+   <field name="relationship_ids" type="int" indexed="true" stored="true" multiValued="true" />
+
+   <field name="category_names" type="text" indexed="true" stored="false" /> 
+   <field name="category_content" type="text" indexed="true" stored="false" /> 
+
+   <field name="cp_score" type="int" indexed="true" stored="true" /> 
+   
+   <field name="lat" type="tdouble" indexed="true" stored="true"/>
+   <field name="lng" type="tdouble" indexed="true" stored="true"/>
+   <field name="lat_rad" type="tdouble" indexed="true" stored="true"/>
+   <field name="lng_rad" type="tdouble" indexed="true" stored="true"/>
+   <field name="location" type="location" indexed="true" stored="true"/>
+   <field name="location_hash" type="geohash" indexed="true" stored="true"/>
+   <field name="location_tiles" type="tile" indexed="true" stored="true"/>
+
+   <field name="sic_full_str" type="string" indexed="true" stored="true" /> 
+
+   <field name="created_at" type="date" indexed="true" stored="true"/>
+   <field name="updated_at" type="date" indexed="true" stored="true"/>
 
    <!-- Common metadata fields, named specifically to match up with
      SolrCell metadata when parsing rich documents such as Word, PDF.
@@ -481,29 +505,16 @@
    -->
    <field name="title" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="subject" type="text" indexed="true" stored="true"/>
-   <field name="description" type="text" indexed="true" stored="true"/>
-   <field name="comments" type="text" indexed="true" stored="true"/>
-   <field name="author" type="textgen" indexed="true" stored="true"/>
    <field name="keywords" type="textgen" indexed="true" stored="true"/>
-   <field name="category" type="textgen" indexed="true" stored="true"/>
-   <field name="content_type" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="last_modified" type="date" indexed="true" stored="true"/>
-   <field name="links" type="string" indexed="true" stored="true" multiValued="true"/>
 
 
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
    <field name="text" type="text" indexed="true" stored="false" multiValued="true"/>
 
-   <!-- catchall text field that indexes tokens both normally and in reverse for efficient
-        leading wildcard queries. -->
-   <field name="text_rev" type="text_rev" indexed="true" stored="false" multiValued="true"/>
-
-   <!-- non-tokenized version of manufacturer to make it easier to sort or group
-        results by manufacturer.  copied from "manu" via copyField -->
-   <field name="manu_exact" type="string" indexed="true" stored="false"/>
-
-   <field name="payloads" type="payloads" indexed="true" stored="true"/>
+   <!-- high and low valued content to include in the search -->
+   <field name="high_text" type="text" indexed="true" stored="false" multiValued="true"/>
+   <field name="low_text" type="text" indexed="true" stored="false" multiValued="true"/>
 
    <!-- Uncommenting the following will create a "timestamp" field using
         a default value of "NOW" to indicate when each document was indexed.
@@ -570,14 +581,20 @@
         is added to the index.  It's used either to index the same field differently,
         or to add multiple fields to the same field for easier/faster searching.  -->
 
-   <copyField source="cat" dest="text"/>
-   <copyField source="store" dest="store_hash"/>
-   <copyField source="store" dest="store_tiles"/>
-   <copyField source="name" dest="text"/>
-   <copyField source="manu" dest="text"/>
-   <copyField source="features" dest="text"/>
-   <copyField source="includes" dest="text"/>
-   <copyField source="manu" dest="manu_exact"/>
+   <copyField source="name" dest="high_text"/>
+   <copyField source="name" dest="name_sort"/>
+   <copyField source="description" dest="high_text"/>
+   <copyField source="contact_name" dest="high_text"/>
+   <copyField source="city" dest="high_text"/>
+   <copyField source="state" dest="high_text"/>
+   <copyField source="full_state" dest="high_text"/>
+   <copyField source="zip" dest="high_text"/>
+   <copyField source="phone" dest="high_text"/>
+
+   <copyField source="address" dest="text"/>
+
+   <copyField source="location" dest="location_hash"/>
+   <copyField source="location" dest="location_tiles"/>
 	
    <!-- Above, multiple source fields are copied to the [text] field. 
 	  Another way to map multiple source fields to the same 

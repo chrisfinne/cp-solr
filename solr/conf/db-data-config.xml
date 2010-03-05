@@ -5,12 +5,14 @@
             name,sic_full_str,description,created_at,updated_at,keywords,content,businesses_count,govt_description,priority,
             'Category' AS klass
           FROM categories WHERE priority >= 0">
+      <field column="id" name="id" />
+      <field column="db_id" name="db_id" />
       <field column="keywords" name="text" />
       <field column="content" name="text" />
       <field column="govt_description" name="text" />
     </entity>
     
-    <entity name="business" query="SELECT businesses.id, name, address, city, state, zip, phone, content, businesses.description, lat, lng, 
+    <entity name="business" transformer="RegexTransformer" query="SELECT businesses.id AS id, name, address, city, state, zip, phone, content, businesses.description, lat, lng, 
           businesses.created_at, businesses.updated_at, cp_score,
           CONCAT(contact_first_name,' ',contact_last_name) AS contact_name,
           contact_last_name AS contact_last_name_sort,
@@ -19,6 +21,7 @@
           'Business' AS klass
         FROM businesses"
       >
+      <field column="id" name="id" />
       <field column="id" name="db_id" />
       <field column="phone" regex="\D" replaceWith="" sourceColName="phone"/>
       

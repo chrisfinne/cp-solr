@@ -1,0 +1,28 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource" batchSize="-1" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/cp_dev" user="compages" password="Asdf1234"/>
+  <document>
+    <entity name="business" query="select id,name,address,city,state,zip,phone,content,description,lat,lng,created_at,updated_at,
+          CONCAT(contact_first_name,' ',contact_last_name) AS contact_name,
+          contact_last_name AS contact_last_name_sort
+        FROM businesses"
+        deltaQuery="select id from businesses where updated_at > '${dataimporter.last_index_time}'">
+      <field column="id" name="id" />
+      <field column="id" name="db_id" />
+      <field column="name" name="name" />
+      <field column="address" name="address" />
+      <field column="city" name="city" />
+      <field column="state" name="state" />
+      <field column="zip" name="zip" />
+      <field column="phone" name="phone" />
+      <field column="content" name="content" />
+      <field column="description" name="description" />
+      <field column="lat" name="lat" />
+      <field column="lng" name="lng" />
+      <field column="created_at" name="created_at" />
+      <field column="updated_at" name="updated_at" />
+      <field column="contact_name" name="contact_name" />
+      <field column="contact_last_name_sort" name="contact_last_name_sort" />
+    </entity>
+  </document>
+</dataConfig>
+

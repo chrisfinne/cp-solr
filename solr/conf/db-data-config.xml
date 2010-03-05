@@ -3,62 +3,32 @@
   <document>
     <entity name="category" query="SELECT id AS db_id, concat('c',id) AS id,
             name,sic_full_str,description,created_at,updated_at,keywords,content,businesses_count,govt_description,priority,
-            'category' AS klass
+            'Category' AS klass
           FROM categories WHERE priority >= 0">
-      <field column="id" name="id" />
-      <field column="db_id" name="db_id" />
-      <field column="klass" name="klass" />
-      <field column="name" name="name" />
-      <field column="sic_full_str" name="sic_full_str" />
-      <field column="description" name="description" />
-      <field column="created_at" name="created_at" />
-      <field column="updated_at" name="updated_at" />
       <field column="keywords" name="text" />
       <field column="content" name="text" />
       <field column="govt_description" name="text" />
-      <field column="businesses_count" name="businesses_count" />
-      <field column="priority" name="priority" />
     </entity>
     
-    <entity name="business" query="SELECT id,name,address,city,state,zip,phone,content,description,lat,lng,created_at,updated_at,cp_score,
+    <entity name="business" query="SELECT businesses.id, name, address, city, state, zip, phone, content, businesses.description, lat, lng, 
+          businesses.created_at, businesses.updated_at, cp_score,
           CONCAT(contact_first_name,' ',contact_last_name) AS contact_name,
           contact_last_name AS contact_last_name_sort,
           RADIANS(lat) AS lat_rad, RADIANS(lng) AS lng_rad,
           CASE state WHEN 'al' THEN 'Alabama' WHEN 'ak' THEN 'Alaska' WHEN 'az' THEN 'Arizona' WHEN 'ar' THEN 'Arkansas' WHEN 'ca' THEN 'California' WHEN 'co' THEN 'Colorado' WHEN 'ct' THEN 'Connecticut' WHEN 'de' THEN 'Delaware' WHEN 'dc' THEN 'District Of Columbia' WHEN 'fl' THEN 'Florida' WHEN 'ga' THEN 'Georgia' WHEN 'hi' THEN 'Hawaii' WHEN 'id' THEN 'Idaho' WHEN 'il' THEN 'Illinois' WHEN 'in' THEN 'Indiana' WHEN 'ia' THEN 'Iowa' WHEN 'ks' THEN 'Kansas' WHEN 'ky' THEN 'Kentucky' WHEN 'la' THEN 'Louisiana' WHEN 'me' THEN 'Maine' WHEN 'md' THEN 'Maryland' WHEN 'ma' THEN 'Massachusetts' WHEN 'mi' THEN 'Michigan' WHEN 'mn' THEN 'Minnesota' WHEN 'ms' THEN 'Mississippi' WHEN 'mo' THEN 'Missouri' WHEN 'mt' THEN 'Montana' WHEN 'ne' THEN 'Nebraska' WHEN 'nv' THEN 'Nevada' WHEN 'nh' THEN 'New Hampshire' WHEN 'nj' THEN 'New Jersey' WHEN 'nm' THEN 'New Mexico' WHEN 'ny' THEN 'New York' WHEN 'nc' THEN 'North Carolina' WHEN 'nd' THEN 'North Dakota' WHEN 'oh' THEN 'Ohio' WHEN 'ok' THEN 'Oklahoma' WHEN 'or' THEN 'Oregon' WHEN 'pa' THEN 'Pennsylvania' WHEN 'ri' THEN 'Rhode Island' WHEN 'sc' THEN 'South Carolina' WHEN 'sd' THEN 'South Dakota' WHEN 'tn' THEN 'Tennessee' WHEN 'tx' THEN 'Texas' WHEN 'ut' THEN 'Utah' WHEN 'vt' THEN 'Vermont' WHEN 'va' THEN 'Virginia' WHEN 'wa' THEN 'Washington' WHEN 'wv' THEN 'West Virginia' WHEN 'wi' THEN 'Wisconsin' WHEN 'wy' THEN 'Wyoming' END AS full_state,
-          'business' AS klass
+          'Business' AS klass
         FROM businesses"
-        deltaQuery="select id from businesses where updated_at > '${dataimporter.last_index_time}'">
-      <field column="id" name="id" />
+      >
       <field column="id" name="db_id" />
-      <field column="klass" name="klass" />
-      <field column="name" name="name" />
-      <field column="address" name="address" />
-      <field column="city" name="city" />
-      <field column="state" name="state" />
-      <field column="zip" name="zip" />
-      <field column="cp_score" name="cp_score" />
-
       <field column="phone" regex="\D" replaceWith="" sourceColName="phone"/>
-
-      <field column="content" name="content" />
-      <field column="description" name="description" />
-      <field column="lat" name="lat" />
-      <field column="lng" name="lng" />
-      <field column="lat_rad" name="lat_rad" />
-      <field column="lng_rad" name="lng_rad" />
-      <field column="created_at" name="created_at" />
-      <field column="updated_at" name="updated_at" />
-      <field column="contact_name" name="contact_name" />
-      <field column="contact_last_name_sort" name="contact_last_name_sort" />
       
-      <entity name="relationship_ids" query="SELECT target_id FROM relationships WHERE source_id=${business.id}">
+<!--      <entity name="relationship_ids" query="SELECT target_id FROM relationships WHERE source_id=${business.id}">
         <field column="target_id" name="relationship_ids"></field>
-      </entity>
+      </entity> -->
       
       <entity name="category_ids" query="SELECT category_id FROM categories_listings WHERE business_id=${business.id}">
         <field column="category_id" name="category_ids"></field>
       </entity>
-      
     </entity>
   </document>
 </dataConfig>

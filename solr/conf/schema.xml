@@ -494,6 +494,8 @@
    <field name="location_tiles" type="tile" indexed="true" stored="true"/>
 
    <field name="sic_full_str" type="string" indexed="true" stored="true" /> 
+   <field name="businesses_count" type="int" indexed="true" stored="true" /> 
+   <field name="priority" type="int" indexed="true" stored="true" /> 
 
    <field name="created_at" type="date" indexed="true" stored="true"/>
    <field name="updated_at" type="date" indexed="true" stored="true"/>

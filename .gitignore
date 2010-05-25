@@ -1,3 +1,4 @@
 logs/**
 solr/conf/dataimport*
-solr/data
+solr/core0/data
+solr/core1/data

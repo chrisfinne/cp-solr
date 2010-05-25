@@ -453,17 +453,18 @@
    <field name="name" type="text" indexed="true" stored="true" /> 
    <field name="name_sort" type="alphaOnlySort" indexed="true" stored="false" /> 
 
-   <field name="address" type="string" indexed="true" stored="true" /> 
+   <field name="address" type="string" indexed="true" stored="false" /> 
    <field name="city" type="text" indexed="true" stored="true" /> 
    <field name="state" type="string" indexed="true" stored="true" /> 
-   <field name="full_state" type="string" indexed="true" stored="true" /> 
-   <field name="zip" type="string" indexed="true" stored="true" /> 
+   <field name="full_state" type="string" indexed="true" stored="false" /> 
+   <field name="zip" type="string" indexed="true" stored="false" /> 
    <field name="contact_name" type="text" indexed="true" stored="true" /> 
    <field name="contact_last_name_sort" type="alphaOnlySort" indexed="true" stored="false" /> 
-   <field name="phone" type="string" indexed="true" stored="true" /> 
-   <field name="all_phones" type="string" indexed="true" stored="false" multiValued="true" /> 
-   <field name="email" type="text_ws" indexed="true" stored="true" /> 
-   <field name="all_emails" type="text_ws" indexed="true" stored="false" multiValued="true" /> 
+   <field name="phones" type="string" indexed="true" stored="false" multiValued="true" /> 
+   <field name="emails" type="text_ws" indexed="true" stored="false" multiValued="true" /> 
+   <field name="contactability" type="int" indexed="true" stored="false" /> 
+
+   <field name="path" type="text_ws" indexed="false" stored="true" /> 
    
    <field name="content" type="text" indexed="true" stored="false" /> 
    <field name="description" type="text" indexed="true" stored="true"/>
@@ -476,12 +477,12 @@
 
    <field name="cp_score" type="int" indexed="true" stored="true" /> 
    
-   <field name="sic_full_str" type="string" indexed="true" stored="true" /> 
+   <field name="sic_full_str" type="string" indexed="true" stored="false" /> 
    <field name="businesses_count" type="int" indexed="true" stored="true" /> 
    <field name="priority" type="int" indexed="true" stored="true" /> 
 
-   <field name="created_at" type="date" indexed="true" stored="true"/>
-   <field name="updated_at" type="date" indexed="true" stored="true"/>
+   <field name="created_at" type="date" indexed="true" stored="false"/>
+   <field name="updated_at" type="date" indexed="true" stored="false"/>
 
 
 
@@ -562,7 +563,7 @@
         <copyField source="state" dest="high_text"/>
         <copyField source="full_state" dest="high_text"/>
         <copyField source="zip" dest="high_text"/>
-        <copyField source="phone" dest="high_text"/>
+        <copyField source="phones" dest="high_text"/>
 
         <copyField source="address" dest="text"/>
 

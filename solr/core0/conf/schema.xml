@@ -477,7 +477,6 @@
 
    <field name="cp_score" type="int" indexed="true" stored="true" /> 
    
-   <field name="sic_full_str" type="string" indexed="true" stored="false" /> 
    <field name="businesses_count" type="int" indexed="true" stored="true" /> 
    <field name="priority" type="int" indexed="true" stored="true" /> 
 

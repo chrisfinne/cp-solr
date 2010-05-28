@@ -461,8 +461,8 @@
    <field name="contact_name" type="text" indexed="true" stored="true" /> 
    <field name="contact_last_name_sort" type="alphaOnlySort" indexed="true" stored="false" /> 
    <field name="phones" type="string" indexed="true" stored="false" multiValued="true" /> 
-   <field name="emails" type="text_ws" indexed="true" stored="false" multiValued="true" /> 
-   <field name="contactability" type="int" indexed="true" stored="false" /> 
+   <field name="emails" type="string" indexed="true" stored="false" multiValued="true" /> 
+   <field name="contactability" type="int" indexed="true" stored="true" /> 
 
    <field name="path" type="text_ws" indexed="false" stored="true" /> 
    
@@ -563,6 +563,7 @@
         <copyField source="full_state" dest="high_text"/>
         <copyField source="zip" dest="high_text"/>
         <copyField source="phones" dest="high_text"/>
+        <copyField source="emails" dest="high_text"/>
 
         <copyField source="address" dest="text"/>
 

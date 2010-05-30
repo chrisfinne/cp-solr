@@ -459,6 +459,7 @@
    <field name="full_state" type="string" indexed="true" stored="false" /> 
    <field name="zip" type="string" indexed="true" stored="false" /> 
    <field name="contact_name" type="text" indexed="true" stored="true" /> 
+   <field name="contact_name_blank" type="boolean" indexed="true" stored="false" /> 
    <field name="contact_last_name_sort" type="alphaOnlySort" indexed="true" stored="false" /> 
    <field name="phones" type="string" indexed="true" stored="false" multiValued="true" /> 
    <field name="emails" type="string" indexed="true" stored="false" multiValued="true" /> 

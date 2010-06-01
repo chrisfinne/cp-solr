@@ -473,8 +473,7 @@
    <field name="category_ids" type="int" indexed="true" stored="true" multiValued="true" />
    <field name="relationship_ids" type="int" indexed="true" stored="true" multiValued="true" />
 
-   <field name="category_names" type="text" indexed="true" stored="false" /> 
-   <field name="category_content" type="text" indexed="true" stored="false" /> 
+   <field name="category_names" type="text" indexed="true" stored="false" multiValued="true" /> 
 
    <field name="cp_score" type="int" indexed="true" stored="true" /> 
    
@@ -565,6 +564,7 @@
         <copyField source="zip" dest="high_text"/>
         <copyField source="phones" dest="high_text"/>
         <copyField source="emails" dest="high_text"/>
+        <copyField source="category_names" dest="high_text"/>
 
         <copyField source="address" dest="text"/>
 

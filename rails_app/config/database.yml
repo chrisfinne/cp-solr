@@ -1,0 +1,26 @@
+login: &login
+  adapter: jdbcmysql
+  pool: 10
+  timeout: 5000
+  encoding: utf8
+  socket: /tmp/mysql.sock
+  reconnect: true
+
+development:
+  <<: *login
+  username: root
+  password: 
+  database: cp_dev
+
+staging:
+  <<: *login
+  database: cp_staging
+  username: compages
+  password: Asdf1234
+
+production:
+  <<: *login
+  database: cp_prod
+  username: compages
+  password: Asdf1234
+  host: compages1.ci1ll2spoqpl.us-east-1.rds.amazonaws.com

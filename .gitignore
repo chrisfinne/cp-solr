@@ -2,3 +2,4 @@ logs/**
 solr/conf/dataimport*
 solr/core0/data
 solr/core1/data
+rails_app/log/*

@@ -521,10 +521,10 @@ This cache doesn't play nice with the spatial plugin being used - finne
      <str name="defType">dismax</str>
      <str name="echoParams">explicit</str>
      <float name="tie">0.1</float>
-     <!--
        <str name="qf">
-          text^0.5 features^1.0 name^1.2 sku^1.5 id^10.0 manu^1.1 cat^1.4
+          name^10 contact_name^8 city^8 high_text^5 text
        </str>
+       <!--
        <str name="pf">
           text^0.2 features^1.1 name^1.5 manu^1.4 manu_exact^1.9
        </str>
@@ -541,9 +541,6 @@ This cache doesn't play nice with the spatial plugin being used - finne
        <str name="q.alt">*:*</str>
       -->
     </lst>
-    <arr name="last-components">
-      <str>geodistance</str>
-    </arr>
   </requestHandler>
 
 
@@ -942,7 +939,7 @@ This cache doesn't play nice with the spatial plugin being used - finne
     <processor class="solr.RunUpdateProcessorFactory"/>
   </updateRequestProcessorChain>
   
-  <queryParser name="spatial" class="nl.jteam.search.solrext.spatial.SpatialTierQueryParserPlugin">
+  <queryParser name="spatial" class="nl.jteam.search.solrext.spatial.SpatialTierQueryParserPlugin" basedOn="dismax">
     <str name="corePoolSize">1</str>
     <str name="maxPoolSize">4</str>
     <str name="keepAlive">60</str>
@@ -1063,7 +1060,7 @@ This cache doesn't play nice with the spatial plugin being used - finne
 
   <!-- config for the admin interface -->
   <admin>
-    <defaultQuery>solr</defaultQuery>
+    <defaultQuery>ladera</defaultQuery>
 
     <!-- configure a healthcheck file for servers behind a loadbalancer
     <healthcheck type="file">server-enabled</healthcheck>

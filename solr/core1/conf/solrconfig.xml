@@ -494,21 +494,6 @@ This cache doesn't play nice with the spatial plugin being used - finne
      If no qt is defined, the requestHandler that declares default="true"
      will be used.
   -->
-  <requestHandler name="standard" class="solr.SearchHandler" default="true">
-    <!-- default values for query parameters -->
-     <lst name="defaults">
-       <!--
-       <str name="echoParams">explicit</str>
-       <int name="rows">10</int>
-       <str name="fl">*</str>
-       <str name="version">2.1</str>
-        -->
-     </lst>
-     <arr name="last-components">
-       <str>geodistance</str>
-     </arr>
-  </requestHandler>
-
 <!-- Please refer to http://wiki.apache.org/solr/SolrReplication for details on configuring replication -->
 <!-- remove the <lst name="master"> section if this is just a slave -->
 <!-- remove  the <lst name="slave"> section if this is just a master -->
@@ -535,32 +520,26 @@ This cache doesn't play nice with the spatial plugin being used - finne
     <lst name="defaults">
      <str name="defType">dismax</str>
      <str name="echoParams">explicit</str>
-     <float name="tie">0.01</float>
-     <str name="qf">
-        text^0.5 features^1.0 name^1.2 sku^1.5 id^10.0 manu^1.1 cat^1.4
-     </str>
-     <str name="pf">
-        text^0.2 features^1.1 name^1.5 manu^1.4 manu_exact^1.9
-     </str>
-     <str name="bf">
-        popularity^0.5 recip(price,1,1000,1000)^0.3
-     </str>
-     <str name="fl">
-        id,name,price,score
-     </str>
-     <str name="mm">
-        2&lt;-1 5&lt;-2 6&lt;90%
-     </str>
-     <int name="ps">100</int>
-     <str name="q.alt">*:*</str>
-     <!-- example highlighter config, enable per-query with hl=true -->
-     <str name="hl.fl">text features name</str>
-     <!-- for this field, we want no fragmenting, just highlighting -->
-     <str name="f.name.hl.fragsize">0</str>
-     <!-- instructs Solr to return the field itself if no query terms are
-          found -->
-     <str name="f.name.hl.alternateField">name</str>
-     <str name="f.text.hl.fragmenter">regex</str> <!-- defined below -->
+     <float name="tie">0.1</float>
+       <str name="qf">
+          name^10 contact_name^8 city^8 high_text^5 text
+       </str>
+       <!--
+       <str name="pf">
+          text^0.2 features^1.1 name^1.5 manu^1.4 manu_exact^1.9
+       </str>
+       <str name="bf">
+          popularity^0.5 recip(price,1,1000,1000)^0.3
+       </str>
+       <str name="fl">
+          id,name,price,score
+       </str>
+       <str name="mm">
+          2&lt;-1 5&lt;-2 6&lt;90%
+       </str>
+       <int name="ps">100</int>
+       <str name="q.alt">*:*</str>
+      -->
     </lst>
   </requestHandler>
 
@@ -714,7 +693,6 @@ This cache doesn't play nice with the spatial plugin being used - finne
     </lst>
     <arr name="last-components">
       <str>spellcheck</str>
-      <str>geodistance</str>
     </arr>
   </requestHandler>
 
@@ -945,7 +923,6 @@ This cache doesn't play nice with the spatial plugin being used - finne
       <str>query</str>
     </arr> -->
     <arr name="last-components">
-      <str>query</str>
       <str>geodistance</str>
     </arr>
   </requestHandler>
@@ -962,7 +939,7 @@ This cache doesn't play nice with the spatial plugin being used - finne
     <processor class="solr.RunUpdateProcessorFactory"/>
   </updateRequestProcessorChain>
   
-  <queryParser name="spatial" class="nl.jteam.search.solrext.spatial.SpatialTierQueryParserPlugin">
+  <queryParser name="spatial" class="nl.jteam.search.solrext.spatial.SpatialTierQueryParserPlugin" basedOn="dismax">
     <str name="corePoolSize">1</str>
     <str name="maxPoolSize">4</str>
     <str name="keepAlive">60</str>
@@ -1083,7 +1060,7 @@ This cache doesn't play nice with the spatial plugin being used - finne
 
   <!-- config for the admin interface -->
   <admin>
-    <defaultQuery>solr</defaultQuery>
+    <defaultQuery>ladera</defaultQuery>
 
     <!-- configure a healthcheck file for servers behind a loadbalancer
     <healthcheck type="file">server-enabled</healthcheck>

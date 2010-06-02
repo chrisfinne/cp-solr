@@ -37,6 +37,7 @@ Rails::Initializer.run do |config|
 
 #  config.gem 'jdbc-mysql'
 #  config.gem 'jruby-openssl'
+#  config.gem 'rack'
   config.gem 'rsolr-direct', :version=>'0.1.0'
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.

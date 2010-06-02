@@ -1,0 +1,41 @@
+= rsolr-direct
+rsolr-direct enhances the RSolr core library by adding the ability to connect to Solr directly, using JRuby, sans http. Hotdog!
+
+= How
+Check out the specs to see the various connection methods.
+
+== Solr Java libs/jars
+RSolr-Direct comes with the required Solr jars. If you'd like to use them, just call #load_java_libs:
+  require 'rsolr-direct'
+  RSolr.load_java_libs
+  # create connection etc..
+
+==:solr_home
+  require 'rsolr-direct'
+  connection = RSolr.connect :direct, :solr_home => '/absolute/path/to/solr/home'
+  
+==Java::OrgApacheSolrCore::SolrCore
+  require 'rsolr-direct'
+  core = org.apache.solr.core.SolrCore.new(nil, solr_data_path, solr_config, index_schema, dcore)
+  connection = RSolr.connect :direct, core
+
+==Java::OrgApacheSolrServlet::DirectSolrConnection
+  require 'rsolr-direct'
+  dc = org.apache.solr.servlet.DirectSolrConnection.new(solr_home_path, solr_data_path, solr_log_path)
+  connection = RSolr.connect :direct, dc
+
+= Why
+Using a direct connection to Solr can speed up indexing. How much faster? I have no idea yet. Numbers to come?
+
+== Note on Patches/Pull Requests
+ 
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a future version unintentionally.
+* Commit, do not mess with rakefile, version, or history
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+== Copyright
+
+Copyright (c) 2010 Matt Mitchell. See LICENSE for details.

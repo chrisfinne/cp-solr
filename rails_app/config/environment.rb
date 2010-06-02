@@ -35,6 +35,8 @@ Rails::Initializer.run do |config|
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = "Pacific Time (US & Canada)"
 
+#  config.gem 'jdbc-mysql'
+#  config.gem 'jruby-openssl'
   config.gem 'rsolr-direct', :version=>'0.1.0'
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.

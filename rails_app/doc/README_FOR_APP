@@ -2,10 +2,14 @@ ruby -J-Xmx1G ./script/console
 
 RSolr.load_java_libs
 require "/Users/chrisfinne/code/cp-solr/solr/lib/spatial-solr-1.0-RC4.jar"
+require  "/var/www/cp/solr/solr/lib/spatial-solr-1.0-RC4.jar"     
+
 c=RSolr.connect :direct, :solr_home=>"/Users/chrisfinne/code/cp-solr/solr/core0"
+c=RSolr.connect :direct, :solr_home=>"/var/www/cp/solr/solr/core0"
+
 c.add Business.first.to_solr
 
-Business.find_in_batches(:conditions=>'id > 180000') do |group| 
+Business.find_in_batches() do |group| 
   h=nil
   puts( (Benchmark.realtime {h=group.collect(&:to_solr)}).to_s)
   puts("hashes for #{group.last.id.to_s}")
@@ -51,6 +55,60 @@ mutex = Mutex.new
 end
 threads.each{|t| t.join};c.commit;c.optimize
 
+num=4
+inc=(Business.count / num).to_i
+threads=[]
+ee=[]
+mutex = Mutex.new
+0.upto(num) do |i|
+  threads << Thread.new do 
+    e=nil
+    thread_num=i.to_s
+    begin
+      start = i * inc
+      the_end = start + inc
+      group=nil
+      h=nil
+      Business.find_in_batches(:conditions=>"id > #{start} AND id <= #{the_end}") do |group|
+        h=group.collect(&:to_solr)
+        mutex.synchronize do
+          c.add(h)
+        end
+        puts("== #{thread_num} ::: #{group.last.id} : #{start}/#{the_end}")
+      end
+    rescue Exception=>e
+      ee << [thread_num,e]
+    end
+  end
+end
+threads.each{|t| t.join};c.commit;c.optimize
+
+
+num=4
+inc=(Business.count / num).to_i
+threads=[]
+ee=[]
+0.upto(num) do |i|
+  threads << Thread.new do 
+    e=nil
+    thread_num=i.to_s
+    begin
+      start = i * inc
+      the_end = start + inc
+      group=nil
+      h=nil
+      Business.find_in_batches(:conditions=>"id > #{start} AND id <= #{the_end}") do |group|
+        c.add(group.collect(&:to_solr))
+        puts("== #{thread_num} ::: #{group.last.id} : #{start}/#{the_end}")
+      end
+    rescue Exception=>e
+      ee << [thread_num,e]
+    end
+  end
+end
+threads.each{|t| t.join};
+wait=false
+c.update %Q!<commit waitFlush="#{wait}" waitSearcher="#{wait}" />!
 
 
 

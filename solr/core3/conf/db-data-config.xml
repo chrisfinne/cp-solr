@@ -1,0 +1,39 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource" batchSize="-1" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/cp_dev" user="root" password=""/>
+  <document>
+    <entity name="category" query="SELECT id AS db_id, concat('c',id) AS id,
+            name,sic_full_str,description,created_at,updated_at,keywords,content,businesses_count,govt_description,priority,
+            'Category' AS klass
+          FROM categories WHERE priority >= 0 AND defer_to_category_id IS NULL">
+      <field column="id" name="id" />
+      <field column="db_id" name="db_id" />
+      <field column="keywords" name="text" />
+      <field column="content" name="text" />
+      <field column="govt_description" name="text" />
+    </entity>
+    
+    <entity name="business" transformer="RegexTransformer" query="SELECT businesses.id AS id, name, address, city, state, zip, content,
+          businesses.description, lat, lng, 
+          email AS emails,
+          businesses.created_at, businesses.updated_at, cp_score,
+          phone AS phones,
+          CONCAT(contact_first_name,' ',contact_last_name) AS contact_name,
+          contact_last_name AS contact_last_name_sort,
+          'Business' AS klass
+        FROM businesses WHERE id > 2100000"
+      >
+      <field column="id" name="id" />
+      <field column="id" name="db_id" />
+      <field column="phones" regex="\D" replaceWith="" sourceColName="phones"/>
+      
+<!--      <entity name="relationship_ids" query="SELECT target_id FROM relationships WHERE source_id=${business.id}">
+        <field column="target_id" name="relationship_ids"></field>
+      </entity> -->
+      
+      <entity name="category_ids" query="SELECT category_id FROM categories_listings WHERE business_id=${business.id}">
+        <field column="category_id" name="category_ids"></field>
+      </entity>
+    </entity>
+  </document>
+</dataConfig>
+

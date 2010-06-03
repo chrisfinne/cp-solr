@@ -8,6 +8,27 @@ class Business < ActiveRecord::Base
   include Content
 #  include HasRelationships
   
+  
+  def self.index_all(index,num_slices)
+    RSolr.load_java_libs
+    require "/Users/chrisfinne/code/cp-solr/solr/lib/spatial-solr-1.0-RC4.jar"
+    c=RSolr.connect :direct, :solr_home=>"/Users/chrisfinne/code/cp-solr/solr/core#{index}"
+    inc=(Business.count / num_slices).to_i
+    start = index * inc
+    the_end = start + inc
+    t=Time.now
+    Business.find_in_batches(:conditions=>"id > #{start} AND id <= #{the_end}") do |group|
+      h=group.collect(&:to_solr)
+      c.add(h)
+      puts("== #{index} #{Time.now - t}s ::: #{group.last.id} : #{start}/#{the_end}")
+      t=Time.now
+    end
+    puts "commiting #{index}"
+    c.commit
+    puts "optimizing #{index}"
+    c.optimize
+  end
+  
   def solr_id
     id
   end

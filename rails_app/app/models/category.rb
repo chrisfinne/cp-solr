@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
     @@categories = []
     def load_categories
       all.each{|c| @@categories[c.id]=c}
+      @@categories.size
     end
 
 

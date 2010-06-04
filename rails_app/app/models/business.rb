@@ -12,8 +12,16 @@ class Business < ActiveRecord::Base
   
   def self.index_all(index,num_slices)
     RSolr.load_java_libs
-    require "/Users/chrisfinne/code/cp-solr/solr/lib/spatial-solr-1.0-RC4.jar"
-    c=RSolr.connect :direct, :solr_home=>"/Users/chrisfinne/code/cp-solr/solr/core#{index}"
+    if File.exists?("/Users/chrisfinne/code/cp-solr/solr/lib/spatial-solr-1.0-RC4.jar")
+      require "/Users/chrisfinne/code/cp-solr/solr/lib/spatial-solr-1.0-RC4.jar"
+    else
+      require  "/var/www/cp/solr/solr/lib/spatial-solr-1.0-RC4.jar"
+    end
+    
+    base_path = "/Users/chrisfinne/code/cp-solr/solr/"
+    base_path = "/var/www/cp/solr/solr/" if File.exists?("/var/www/cp/solr/solr/")
+    
+    c=RSolr.connect :direct, :solr_home=>"#{base_path}/core#{index}"
     inc=(Business.count / num_slices).to_i
     start = index * inc
     the_end = start + inc

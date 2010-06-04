@@ -1,3 +1,4 @@
+require 'parse_contact_info'
 class Business < ActiveRecord::Base
   NO_SEARCH_CONTENT_SIMPLE_FIELDS=[:crawl_emails, :year_established, :headshot_url, :other_image_url, :other2_image_url, :add_ecosystem_ids, :del_ecosystem_ids, :ecosystem_category_custom_names, :remove_second_degree_ids, :business_radius, :other_emails, :other_phones]
   CONTENT_SIMPLE_FIELDS=[:keywords, :license_number, :page_title, :page_description, :url_keywords, :show_schools_within_miles, :scraped_content, :tag_line, :awards, :business_type, :other_groups]
@@ -16,10 +17,15 @@ class Business < ActiveRecord::Base
     inc=(Business.count / num_slices).to_i
     start = index * inc
     the_end = start + inc
+    puts "Load categories: #{Category.load_categories}"
+    puts "start biz batches for #{start}:#{the_end}"
+    h=nil
     t=Time.now
-    Business.find_in_batches(:conditions=>"id > #{start} AND id <= #{the_end}") do |group|
-      h=group.collect(&:to_solr)
-      c.add(h)
+    Business.find_in_batches(:conditions=>"id > #{start} AND id <= #{the_end}", :batch_size=>100) do |group|
+#      puts "loaded #{group.size}"
+#      puts "generate hash #{Benchmark.realtime{h=group.collect(&:to_solr)}}s"
+#      c.add(h)
+      c.add(group.collect(&:to_solr))
       puts("== #{index} #{Time.now - t}s ::: #{group.last.id} : #{start}/#{the_end}")
       t=Time.now
     end

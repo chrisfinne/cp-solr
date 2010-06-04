@@ -1,3 +1,12 @@
+jruby --fast -J-Xmx512M ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(0,7)' &
+jruby --fast -J-Xmx512M ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(1,7)' &
+jruby --fast -J-Xmx512M ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(2,7)' &
+jruby --fast -J-Xmx512M ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(3,7)' &
+jruby --fast -J-Xmx512M ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(4,7)' &
+jruby --fast -J-Xmx512M ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(5,7)' &
+jruby --fast -J-Xmx512M ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(6,7)' &
+
+
 ruby -J-Xmx1G ./script/console 
 
 RSolr.load_java_libs

@@ -7,8 +7,12 @@ nice jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;Par
 nice jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(6,7)' &
 
 
-# Merge cores 0-6 into core 7
+# Merge cores 0-6 into core 7 - DEV
 http://localhost:8983/solr/admin/cores?action=mergeindexes&core=core7&indexDir=/Users/chrisfinne/code/cp-solr/solr/core0/data/index&indexDir=/Users/chrisfinne/code/cp-solr/solr/core1/data/index&indexDir=/Users/chrisfinne/code/cp-solr/solr/core2/data/index&indexDir=/Users/chrisfinne/code/cp-solr/solr/core3/data/index&indexDir=/Users/chrisfinne/code/cp-solr/solr/core4/data/index&indexDir=/Users/chrisfinne/code/cp-solr/solr/core5/data/index&indexDir=/Users/chrisfinne/code/cp-solr/solr/core6/data/index
+
+
+# Merge cores 0-6 into core 7 - PRODUCTION
+http://localhost:8983/solr/admin/cores?action=mergeindexes&core=core7&indexDir=/var/www/cp/solr/solr/core0/data/index&indexDir=/var/www/cp/solr/solr/core1/data/index&indexDir=/var/www/cp/solr/solr/core2/data/index&indexDir=/var/www/cp/solr/solr/core3/data/index&indexDir=/var/www/cp/solr/solr/core4/data/index&indexDir=/var/www/cp/solr/solr/core5/data/index&indexDir=/var/www/cp/solr/solr/core6/data/index
 
 
 ruby -J-Xmx1G ./script/console 

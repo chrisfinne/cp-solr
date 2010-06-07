@@ -72,7 +72,13 @@ class Business < ActiveRecord::Base
     }
   end
   
+  def has_testimonial?
+    @@business_ids_with_testimonials ||= connection.select_values("SELECT DISTINCT business_id FROM testimonials WHERE published=1").collect(&:to_i)
+    @@business_ids_with_testimonials.include?(self.id)
+  end
+  
   def testimonials_published_text
+    return [] unless has_testimonial?
     self.class.connection.select_all("SELECT first_name, last_name, title, company_name, body FROM testimonials WHERE business_id=#{id} AND published=1").
       collect{|t| "#{t['first_name']} #{t['last_name']} #{t['title']} #{t['company_name']} #{t['body']}"}
   end

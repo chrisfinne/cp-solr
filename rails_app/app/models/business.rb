@@ -53,7 +53,10 @@ class Business < ActiveRecord::Base
       :description=>description,
       :category_names=>categories.collect(&:name),
       :high_text=>[tag_line], 
-      :text=>[content, categories.collect(&:keywords), categories.collect(&:description), categories.collect(&:govt_description), categories.collect(&:content)].flatten, 
+      :text=>[content, 
+        categories.collect(&:keywords), categories.collect(&:description), categories.collect(&:govt_description), categories.collect(&:content),
+        testimonials_published_text
+        ].flatten, 
       :created_at=>created_at.try(:utc).try(:iso8601), :updated_at=>updated_at.try(:utc).try(:iso8601),
       :address=>address, :city=>city, :state=>state, :full_state=>full_state, :zip=>zip, 
       :phones=>[phone,fax].reject(&:blank?).collect{|p| ParseContactInfo.to_phone(p,country)},
@@ -68,6 +71,12 @@ class Business < ActiveRecord::Base
       :category_ids=>solr_category_ids, :relationship_ids=>solr_first_degree_ids
     }
   end
+  
+  def testimonials_published_text
+    self.class.connection.select_all("SELECT first_name, last_name, title, company_name, body FROM testimonials WHERE business_id=#{id} AND published=1").
+      collect{|t| "#{t['first_name']} #{t['last_name']} #{t['title']} #{t['company_name']} #{t['body']}"}
+  end
+  
   
   def contactability
     return 50 if user_id

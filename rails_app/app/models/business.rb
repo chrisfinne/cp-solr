@@ -64,6 +64,7 @@ class Business < ActiveRecord::Base
       :lat=>lat, :lng=>lng, 
       :path=>to_param,
       :contactability=>contactability,
+      :is_group=>group_id.present?,
 #      :lat_rad=>lat_radians, :lng_rad=>lng_radians, 
       :cp_score=>cp_score,
 #      :location_hash=>geohash, 

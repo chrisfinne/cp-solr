@@ -479,6 +479,7 @@
    
    <field name="businesses_count" type="int" indexed="true" stored="true" /> 
    <field name="priority" type="int" indexed="true" stored="true" /> 
+   <field name="is_group" type="boolean" indexed="true" stored="false" /> 
 
    <field name="created_at" type="date" indexed="true" stored="false"/>
    <field name="updated_at" type="date" indexed="true" stored="false"/>

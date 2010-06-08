@@ -918,13 +918,6 @@ This cache doesn't play nice with the spatial plugin being used - finne
     <lst name="defaults">
       <str name="echoParams">explicit</str> 
     </lst>
-    <!--
-    <arr name="components"> 
-      <str>query</str>
-    </arr> -->
-    <arr name="last-components">
-      <str>geodistance</str>
-    </arr>
   </requestHandler>
   <requestHandler name="/update" class="solr.XmlUpdateRequestHandler"/>
 

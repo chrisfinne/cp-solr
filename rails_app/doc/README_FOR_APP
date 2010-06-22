@@ -1,10 +1,50 @@
-nice jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(0,7)' &
-nice jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(1,7)' &
-nice jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(2,7)' &
-nice jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(3,7)' &
-nice jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(4,7)' &
-nice jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(5,7)' &
-nice jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(6,7)' &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(0,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(1,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(2,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(3,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(4,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(5,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(6,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(7,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(8,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(9,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(10,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(11,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(12,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(13,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(14,16)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(15,16)' >> /tmp/t.log 2>&1 &
+
+nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(0,7)' &
+nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(1,7)' &
+nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(2,7)' &
+nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(3,7)' &
+nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(4,7)' &
+nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(5,7)' &
+nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(6,7)' &
+
+
+
+
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(0,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(1,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(2,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(3,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(4,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(5,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(6,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(7,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(8,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(9,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(10,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(11,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(12,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(13,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(14,16,0,2679483)' >> /tmp/t.log 2>&1 &
+jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(15,16,0,2679483)' >> /tmp/t.log 2>&1 &
+
+
+
 
 
 # Merge cores 0-6 into core 7 - DEV
@@ -14,6 +54,9 @@ http://localhost:8983/solr/admin/cores?action=mergeindexes&core=core7&indexDir=/
 # Merge cores 0-6 into core 7 - PRODUCTION
 http://localhost:8983/solr/admin/cores?action=mergeindexes&core=core7&indexDir=/var/www/cp/solr/solr/core0/data/index&indexDir=/var/www/cp/solr/solr/core1/data/index&indexDir=/var/www/cp/solr/solr/core2/data/index&indexDir=/var/www/cp/solr/solr/core3/data/index&indexDir=/var/www/cp/solr/solr/core4/data/index&indexDir=/var/www/cp/solr/solr/core5/data/index&indexDir=/var/www/cp/solr/solr/core6/data/index
 
+http://localhost:8983/solr/admin/cores?action=mergeindexes&core=core17&indexDir=/var/www/cp/solr/solr/core2/data/index&indexDir=/var/www/cp/solr/solr/core3/data/index&indexDir=/var/www/cp/solr/solr/core4/data/index&indexDir=/var/www/cp/solr/solr/core5/data/index&indexDir=/var/www/cp/solr/solr/core6/data/index&indexDir=/var/www/cp/solr/solr/core7/data/index&indexDir=/var/www/cp/solr/solr/core8/data/index&indexDir=/var/www/cp/solr/solr/core9/data/index&indexDir=/var/www/cp/solr/solr/core10/data/index&indexDir=/var/www/cp/solr/solr/core11/data/index&indexDir=/var/www/cp/solr/solr/core12/data/index&indexDir=/var/www/cp/solr/solr/core13/data/index&indexDir=/var/www/cp/solr/solr/core14/data/index&indexDir=/var/www/cp/solr/solr/core15/data/index
+
+http://localhost:8983/solr/admin/cores?action=mergeindexes&core=core0&indexDir=/var/www/cp/solr/solr/core7/data/index&indexDir=/var/www/cp/solr/solr/core17/data/index
 
 ruby -J-Xmx1G ./script/console 
 
@@ -138,4 +181,20 @@ Business.find_in_batches do |group|
   puts(group.last.id.to_s+"\n\n")
 end
 
+
+
+
+>> arr=[];0.upto(17){|i| Solr.set_connection('core'+i.to_s);arr << Solr.search("*:*")['numFound']}
+=> 0
+>> arr
+=> [0, 0, 1280554, 1161207, 1128502, 1208461, 1206262, 1243311, 1303512, 1156273, 1276506, 1241349, 1207843, 1157057, 1318666, 1246779, 0, 0]
+
+arr=[]
+0.upto(16) do |i|
+  Solr.set_connection("solr#{i}")
+  r=Solr.search(:q=>'*:*', :fl=>'id', :per_page=>1000)
+  r['numFound']
+  ['docs'].collect{|d| d['id'].to_i}
+
+end
 

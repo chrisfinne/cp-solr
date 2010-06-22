@@ -34,13 +34,12 @@ class Business < ActiveRecord::Base
 #      puts "generate hash #{Benchmark.realtime{h=group.collect(&:to_solr)}}s"
 #      c.add(h)
       c.add(group.collect(&:to_solr))
-      puts("== #{index} #{Time.now - t}s ::: #{group.last.id} : #{start}/#{the_end}")
+      puts("== #{index} #{Time.now - t}s ::: #{group.last.id} : #{start}/#{the_end}  #{((group.last.id - start) / (the_end - start)).to_i}%")
       t=Time.now
     end
-    puts "commiting #{index}"
-    c.commit
-    puts "optimizing #{index}"
+    puts "DONE INDEXING - optimizing #{index}"
     c.optimize
+    puts "DONE OPTIMIZING #{index}"
   end
   
   def solr_id

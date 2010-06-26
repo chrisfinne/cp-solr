@@ -13,7 +13,7 @@
         <New class="org.mortbay.util.RolloverFileOutputStream">
           <Arg><SystemProperty name="jetty.home" default="."/>/logs/yyyy_mm_dd.solr.log</Arg>
           <Arg type="boolean">false</Arg>
-          <Arg type="int">90</Arg>
+          <Arg type="int">4</Arg>
           <Arg><Call class="java.util.TimeZone" name="getTimeZone"><Arg>GMT</Arg></Call></Arg>
           <Get id="ServerLogName" name="datedFilename"/>
         </New>

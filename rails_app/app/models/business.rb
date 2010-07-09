@@ -65,10 +65,11 @@ class Business < ActiveRecord::Base
       :contactability=>contactability,
       :is_group=>group_id.present?,
 #      :lat_rad=>lat_radians, :lng_rad=>lng_radians, 
-      :cp_score=>cp_score,
+#      :cp_score=>cp_score,
 #      :location_hash=>geohash, 
 #      :location=>"#{lat},#{lng}",
-      :category_ids=>solr_category_ids, :relationship_ids=>solr_first_degree_ids
+      :category_ids=>solr_category_ids
+#      , :relationship_ids=>solr_first_degree_ids
     }
   end
   
@@ -93,6 +94,8 @@ class Business < ActiveRecord::Base
     c+=4 if crawl_emails.present?
     c+=5 if other_emails.present?
     c+=20 if email
+    c+=5 if data_source=='car-scrape' or data_source=="ca-bar"
+    c+=4 if data_source=='yl' or data_source=='contact'
     c
   end
   
@@ -109,10 +112,7 @@ class Business < ActiveRecord::Base
   end
 
   def calculate_cp_score
-    self.cp_score = 0
-    self.cp_score += relationships.count
-    self.cp_score += testimonials.published.count
-    cp_score
+    self.cp_score = contactability
   end
 
 

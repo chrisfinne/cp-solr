@@ -93,7 +93,7 @@ class Business < ActiveRecord::Base
     c+=4 if url.present?
     c+=4 if crawl_emails.present?
     c+=5 if other_emails.present?
-    c+=20 if email
+    c+=20 if email.present?
     c+=5 if data_source=='car-scrape' or data_source=="ca-bar"
     c+=4 if data_source=='yl' or data_source=='contact'
     c

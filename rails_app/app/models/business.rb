@@ -22,7 +22,7 @@ class Business < ActiveRecord::Base
     base_path = "/var/www/cp/solr/solr/" if File.exists?("/var/www/cp/solr/solr/")
     
     c=RSolr.connect :direct, :solr_home=>"#{base_path}/core#{index}"
-    inc=(Business.count / num_slices).to_i
+    inc=(Business.last.id / num_slices).to_i
     start = index * inc
     the_end = start + inc
     puts "Load categories: #{Category.load_categories}"

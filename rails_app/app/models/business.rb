@@ -29,11 +29,12 @@ class Business < ActiveRecord::Base
     puts "start biz batches for #{start}:#{the_end}"
     h=nil
     t=Time.now
-    Business.find_in_batches(:conditions=>"id > #{start} AND id <= #{the_end}", :batch_size=>100) do |group|
+    Business.find_in_batches(:conditions=>"id > #{start} AND id <= #{the_end} AND delta=1", :batch_size=>100) do |group|
 #      puts "loaded #{group.size}"
 #      puts "generate hash #{Benchmark.realtime{h=group.collect(&:to_solr)}}s"
 #      c.add(h)
       c.add(group.collect(&:to_solr))
+      Business.connection.update "UPDATE businesses SET delta=0 WHERE id > #{start} AND id <= #{the_end} AND delta=1"
       puts("== #{index} #{Time.now - t}s ::: #{group.last.id} : #{start}/#{the_end}  #{((group.last.id - start) / (the_end - start)).to_i}%")
       t=Time.now
     end

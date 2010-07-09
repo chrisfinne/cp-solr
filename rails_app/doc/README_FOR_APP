@@ -1,49 +1,19 @@
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(0,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(1,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(2,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(3,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(4,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(5,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(6,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(7,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(8,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(9,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(10,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(11,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(12,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(13,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(14,16)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(15,16)' >> /tmp/t.log 2>&1 &
-
-nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(0,7)' &
-nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(1,7)' &
-nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(2,7)' &
-nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(3,7)' &
-nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(4,7)' &
-nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(5,7)' &
-nice ruby -J-Xmx600M ./script/runner 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(6,7)' &
-
-
-
-
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(0,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(1,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(2,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(3,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(4,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(5,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(6,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(7,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(8,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(9,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(10,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(11,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(12,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(13,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(14,16,0,2679483)' >> /tmp/t.log 2>&1 &
-jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(15,16,0,2679483)' >> /tmp/t.log 2>&1 &
-
-
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(0,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(1,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(2,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(3,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(4,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(5,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(6,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(7,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(8,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(9,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(10,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(11,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(12,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(13,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(14,16)' >> /tmp/t.log 2>&1 &
+nohup jruby -J-Xmx2G ./script/runner -e production 'Business.first rescue nil;ParseContactInfo rescue nil ; Business.index_all(15,16)' >> /tmp/t.log 2>&1 &
 
 
 

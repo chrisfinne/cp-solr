@@ -1,7 +1,7 @@
 <dataConfig>
   <dataSource type="JdbcDataSource" batchSize="-1" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/cp_dev" user="root" password=""/>
   <document>
-    <entity name="category" query="SELECT id AS db_id, concat('c',id) AS id,
+<!--    <entity name="category" query="SELECT id AS db_id, concat('c',id) AS id,
             name,sic_full_str,description,created_at,updated_at,keywords,content,businesses_count,govt_description,priority,
             'Category' AS klass
           FROM categories WHERE priority >= 0 AND defer_to_category_id IS NULL">
@@ -11,12 +11,15 @@
       <field column="content" name="text" />
       <field column="govt_description" name="text" />
     </entity>
-    
-    <entity name="business" transformer="RegexTransformer" query="SELECT businesses.id AS id, name, address, city, state, zip, content,
+-->
+    <entity name="business" transformer="RegexTransformer" query="SELECT businesses.id AS id, 
+          name, address, city, state, zip, content,
           businesses.description, lat, lng, 
           email AS emails,
           businesses.created_at, businesses.updated_at, cp_score,
           phone AS phones,
+          cp_score AS contactability,
+          CAST(id AS char) AS path,
           CONCAT(contact_first_name,' ',contact_last_name) AS contact_name,
           contact_last_name AS contact_last_name_sort,
           'Business' AS klass
@@ -30,9 +33,9 @@
         <field column="target_id" name="relationship_ids"></field>
       </entity> -->
       
-      <entity name="category_ids" query="SELECT category_id FROM categories_listings WHERE business_id=${business.id}">
+<!--      <entity name="category_ids" quer`y="SELECT category_id FROM categories_listings WHERE business_id=${business.id}">
         <field column="category_id" name="category_ids"></field>
-      </entity>
+      </entity> -->
     </entity>
   </document>
 </dataConfig>

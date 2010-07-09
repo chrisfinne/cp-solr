@@ -12,10 +12,10 @@ class Business < ActiveRecord::Base
   
   def self.index_all(index,num_slices)
     RSolr.load_java_libs
-    if File.exists?("/Users/chrisfinne/code/cp-solr/solr/lib/spatial-solr-1.0-RC4.jar")
-      require "/Users/chrisfinne/code/cp-solr/solr/lib/spatial-solr-1.0-RC4.jar"
+    if File.exists?("/Users/chrisfinne/code/cp-solr/solr/lib/spatial-solr-1.0-RC5.jar")
+      require "/Users/chrisfinne/code/cp-solr/solr/lib/spatial-solr-1.0-RC5.jar"
     else
-      require  "/var/www/cp/solr/solr/lib/spatial-solr-1.0-RC4.jar"
+      require  "/var/www/cp/solr/solr/lib/spatial-solr-1.0-RC5.jar"
     end
     
     base_path = "/Users/chrisfinne/code/cp-solr/solr/"

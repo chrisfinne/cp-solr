@@ -11,6 +11,8 @@ class Business < ActiveRecord::Base
   
   
   def self.index_all(index,num_slices)
+    logger = ActiveSupport::BufferedLogger.new("#{RAILS_ROOT}/log/solr-index-#{index}.log")
+
     RSolr.load_java_libs
     if File.exists?("/Users/chrisfinne/code/cp-solr/solr/lib/spatial-solr-1.0-RC5.jar")
       require "/Users/chrisfinne/code/cp-solr/solr/lib/spatial-solr-1.0-RC5.jar"
@@ -25,22 +27,22 @@ class Business < ActiveRecord::Base
     inc=(Business.last.id / num_slices).to_i
     start = index * inc
     the_end = start + inc
-    puts "Load categories: #{Category.load_categories}"
-    puts "start biz batches for #{start}:#{the_end}"
+    logger.info "Load categories: #{Category.load_categories}"
+    logger.info "start biz batches for #{start}:#{the_end}"
     h=nil
     t=Time.now
     Business.find_in_batches(:conditions=>"id > #{start} AND id <= #{the_end} AND delta=1", :batch_size=>100) do |group|
-#      puts "loaded #{group.size}"
-#      puts "generate hash #{Benchmark.realtime{h=group.collect(&:to_solr)}}s"
+#      logger.info "loaded #{group.size}"
+#      logger.info "generate hash #{Benchmark.realtime{h=group.collect(&:to_solr)}}s"
 #      c.add(h)
       c.add(group.collect(&:to_solr))
       Business.connection.update "UPDATE businesses SET delta=0 WHERE id >= #{group.first.id} AND id <= #{group.last.id} AND delta=1"
-      puts("== #{index} #{Time.now - t}s ::: #{group.last.id} : #{start}/#{the_end}  #{((group.last.id - start) / (the_end - start)).to_i}%")
+      logger.info("== #{index} #{Time.now - t}s ::: #{group.last.id} : #{start}/#{the_end}  #{((group.last.id - start) / (the_end - start)).to_i}%")
       t=Time.now
     end
-    puts "DONE INDEXING - optimizing #{index}"
+    logger.info "DONE INDEXING - optimizing #{index}"
     c.optimize
-    puts "DONE OPTIMIZING #{index}"
+    logger.info "DONE OPTIMIZING #{index}"
   end
   
   def solr_id

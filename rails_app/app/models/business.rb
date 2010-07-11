@@ -31,6 +31,7 @@ class Business < ActiveRecord::Base
     logger.info "start biz batches for #{start}:#{the_end}"
     h=nil
     t=Time.now
+    commit_index=0
     Business.find_in_batches(:conditions=>"id > #{start} AND id <= #{the_end} AND delta=1", :batch_size=>100) do |group|
 #      logger.info "loaded #{group.size}"
 #      logger.info "generate hash #{Benchmark.realtime{h=group.collect(&:to_solr)}}s"
@@ -39,6 +40,12 @@ class Business < ActiveRecord::Base
       Business.connection.update "UPDATE businesses SET delta=0 WHERE id >= #{group.first.id} AND id <= #{group.last.id} AND delta=1"
       logger.info("== #{index} #{Time.now - t}s ::: #{group.last.id} : #{start}/#{the_end}  #{((group.last.id - start) / (the_end - start)).to_i}%")
       t=Time.now
+      if commit_index > 100
+        commit_time=Time.now
+        c.commit(true,true)
+        logger.info("== #{index} COMMITTED #{Time.now - commit_time}s")
+        commit_index=0
+      end
     end
     logger.info "DONE INDEXING - optimizing #{index}"
     c.optimize

@@ -40,7 +40,7 @@ class Business < ActiveRecord::Base
       t=Time.now
       if commit_index > 100
         commit_time=Time.now
-        c.commit(true,true)
+        c.commit
         Business.connection.update "UPDATE businesses SET delta=0 WHERE id >= #{new_batch_start_id} AND id <= #{group.last.id} AND delta=1"
         logger.info("== #{index} COMMITTED #{Time.now - commit_time}s")
         commit_index=0

@@ -33,17 +33,17 @@ class Solr
     def remove_from_index(obj, commit=true, wait=false)
       obj = [obj] unless obj.is_a?(Array)
       connection.delete_by_id obj.collect{|o| (o.kind_of?(String) or o.kind_of?(Fixnum)) ? o : o.solr_id}
-      commit_wait(commit,wait)
+      commit_wait(commit,wait,true)
     end
     
-    def commit_wait(commit,wait)
-      connection.update %Q!<commit waitFlush="#{wait}" waitSearcher="#{wait}" />! if commit
+    def commit_wait(commit,wait,deletes=false)
+      connection.update %Q!<commit waitFlush="#{wait}" waitSearcher="#{wait}" expungeDeletes="#{deletes}" />! if commit
     end
     
     def optimize(wait=false)
-      connection.update %Q!<optimize waitFlush="#{wait}" waitSearcher="#{wait}" />!
+      connection.update %Q!<optimize waitFlush="#{wait}" waitSearcher="#{wait}" expungeDeletes="true" />!
     end
-    
+
   end
 end
 

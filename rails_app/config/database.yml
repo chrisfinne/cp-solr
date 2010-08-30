@@ -23,4 +23,4 @@ production:
   database: cp_prod
   username: compages
   password: Asdf1234
-  host: compages1.ci1ll2spoqpl.us-east-1.rds.amazonaws.com
+  host: compages2.ci1ll2spoqpl.us-east-1.rds.amazonaws.com

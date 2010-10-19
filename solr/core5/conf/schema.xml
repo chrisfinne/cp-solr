@@ -463,7 +463,11 @@
    <field name="contact_last_name_sort" type="alphaOnlySort" indexed="true" stored="false" /> 
    <field name="phones" type="string" indexed="true" stored="false" multiValued="true" /> 
    <field name="emails" type="string" indexed="true" stored="false" multiValued="true" /> 
-   <field name="contactability" type="int" indexed="true" stored="true" /> 
+   <field name="contactability" type="int" indexed="true" stored="true" />
+   
+   <field name="facebook_friend_names" type="string" indexed="true" stored="false" multiValued="true" /> 
+   <field name="facebook_friend_ids" type="int" indexed="true" stored="false" multiValued="true" /> 
+   <field name="facebook_id" type="int" indexed="true" stored="false" multiValued="false" /> 
 
    <field name="path" type="string" indexed="false" stored="true" /> 
    

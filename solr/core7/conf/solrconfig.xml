@@ -875,26 +875,11 @@ This cache doesn't play nice with the spatial plugin being used - finne
   </requestHandler>
   <requestHandler name="/update" class="solr.XmlUpdateRequestHandler"/>
 
-  <updateRequestProcessorChain>
-    <processor class="nl.jteam.search.solrext.spatial.SpatialTierUpdateProcessorFactory">
-      <str name="latField">lat</str> 
-      <str name="lngField">lng</str> 
-      <int name="startTier">9</int> <!-- about 100 miles -->
-      <int name="endTier">17</int> <!-- 15 is about 1 mile -->
-    </processor>
-    <processor class="solr.LogUpdateProcessorFactory"/>
-    <processor class="solr.RunUpdateProcessorFactory"/>
-  </updateRequestProcessorChain>
-  
-  <queryParser name="spatial" class="nl.jteam.search.solrext.spatial.SpatialTierQueryParserPlugin" basedOn="dismax">
-    <str name="corePoolSize">1</str>
-    <str name="maxPoolSize">4</str>
-    <str name="keepAlive">60</str>
+  <queryParser name="spatial" class="nl.jteam.search.solrext.spatial.SpatialQParserPlugin">
     <str name="latField">lat</str>
     <str name="lngField">lng</str>
-    <str name="tierPrefix">_tier_</str>
   </queryParser>
-
+  
   <requestHandler name="/admin/" class="org.apache.solr.handler.admin.AdminHandlers" />
 
   <!-- ping/healthcheck -->

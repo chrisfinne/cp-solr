@@ -1,0 +1,70 @@
+v1.2.9.2
+  * bug fix: don't depend on system property for trace logging
+v1.2.9.1
+  * bug fix: transaction not always cleared
+  * bug fix: change to log_level setting not dynamic (introduced in 1.2.9)
+v1.2.9
+  * obfuscate selected fields in SQL statements
+  * measure method invocation time in nanoseconds
+  * bug fix: report data to multiple app names broken in 1.2.008
+  * bug fix: NullPointerException instrumenting JRun 4.
+  * bug fix: Prevent Agent from starting more than once
+  * bug fix: Sample memory at least once per harvest
+  * bug fix: memory leak in Tomcat with Java logging and System.err  
+v1.2.008
+  * multiple applications
+  * get apdex_t from RPM
+  * remove built-in URL normalization rules
+  * record nested exceptions in error report
+  * support for HttpClient version 4
+  * bug fix: Solr JSON deserialization error in RPM
+  * bug fix: purge dead thread ids and catch uncaught exceptions in runnables
+v1.2.007
+  * added support for Oracle jdbc drivers
+  * added support for parameterized SQL
+  * added log_sql config property in transaction_tracer section to write SQL to log instead of sending to the RPM service
+  * enable_custom_tracing is true by default
+  * bug fix: root cause of exception not reported for custom exception handler
+  * bug fix: NullPointerException caused by java.lang.Throwable.getStackTrace() returning null
+  * bug fix: app server port not formatted correctly in log
+  * bug fix: java.lang.IncompatibleClassChangeError with Hibernate 3.5
+v1.2.006
+  * added install command to back up/edit start script on Tomcat, Jetty and JBoss 
+v1.2.005.3
+  * added support for prepared statements with Microsoft SQL Server JDBC driver and jTDS SQL Server and Sybase JDBC driver
+  * removed a synchronized call to get a handle to the agent from tracers
+v1.2.005.2
+  * fixed a problem related to solr request names - urls were including parameters
+v1.2.005.1
+  * fixed a few problems related to WebSphere instrumentation
+v1.2.005
+  * added Solr support
+  * use a new method to connect to the RPM service
+v1.2.004.4
+  * allow Spring transactions to be named using the controller/method name
+  * do not ding apdex score for ignored errors (404s, for example)
+v1.2.004.2.
+  * fix explain plans
+  * report errors that have been routed to jsp error pages
+v1.2.004.
+  * web transactions break out Hibernate calls by entity operation
+  * added instrumentation for Solr autocommit background tasks
+  * added a tracer to Jersey resources so they show up in transaction breakdowns
+  * bug fix for MySql explain plans
+  * bug fix to prevent non-numeric numbers from funking up StatsImpl
+v1.2.001.
+  * enhanced PostgreSQL jdbc support
+  * added JSF instrumentation.  Lifecycle execute(..) and render(..) are broken out.  So is com.sun.faces.lifecycle.Phase.doPhase(..)
+  * upgraded to ASM 3.2  
+v1.2.000.
+  * show sql for callableStatements created with Connection.prepareCall
+  * bug fixes for Resin servlet container
+  * bug fixes related to http commons instrumentation
+  * fix custom instrumentation to support @Trace annotations on methods with array arguments
+  * instrument Connection.prepareCall() methods so that sql is captured for these invocations
+  * fix a bug that breaks tracer exclusive times when transaction tracing is turned off 
+v1.1.005.
+  * switched from org.json to JSON.simple for json serialization
+  * use a less verbose json format (more arrays, less hashes)
+  * make the log_level setting hot so the log level can be changed without restarting the agent
+  * improved Resin support.  Exception stacks are reported with traced errors

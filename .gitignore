@@ -1,4 +1,5 @@
 logs/**
+newrelic/logs/**
 solr/conf/dataimport*
 solr/core*/data*
 rails_app/log/*
